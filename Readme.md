@@ -1,2 +1,3 @@
-:D  election system for school project
-would comprise of tkinter,sql and python
+# :D  election system for school project
+
+# would comprise of tkinter,sql and python
