@@ -9,7 +9,7 @@ mycursor=mydb.cursor()
 
 mycursor.execute("Create database IF NOT EXISTS Electionsys")
 mycursor.execute("use Electionsys")   
-mycursor.execute("create table IF NOT EXISTS admin(Cndt_Id char(20) primary key,Cndt_Name char(20),Vote_cnt int(3))")
+mycursor.execute("create table IF NOT EXISTS candidates(Cndt_Id char(20) primary key,Cndt_Name char(20),Position char(20),Vote_cnt int(3))")
 
 
 
@@ -17,11 +17,12 @@ mycursor.execute("create table IF NOT EXISTS admin(Cndt_Id char(20) primary key,
 candidateNo=int(input("Enter number of candidates:-"))
 for i in range(candidateNo):
     candidateID=input("Enter id of candidate:-")
+    PositionName=input("Enter position of candidate:-")
     candidateName=input("Enter Name of candidate:-")
 
-    sql='''Insert into admin(Cndt_Id,Cndt_Name) values(%s,%s)'''
+    sql='''Insert into candidates(Cndt_Id,Cndt_Name,Position) values(%s,%s,%s)'''
     
-    data=(candidateID,candidateName)
+    data=(candidateID,candidateName,PositionName)
 
     mycursor.execute(sql,data)
 
