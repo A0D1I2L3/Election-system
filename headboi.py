@@ -5,25 +5,15 @@ mycursor=mydb.cursor()
 
 
 
-while(1):
-    try:
-        mycursor.execute("Create database Electionsys")
-    except broker.errors.DatabaseError:
-        
-        break
-
-while(1):
-    try:
-        mycursor.execute("USE Electionsys")       
-        mycursor.execute("create table admin(Cndt_Id char(20) primary key,Cndt_Name char(20),Vote_cnt int(3))")
-
-    except broker.errors.ProgrammingError :
-        
-        break
 
 
-mycursor.execute("USE Electionsys")       
+mycursor.execute("Create database IF NOT EXISTS Electionsys")
+mycursor.execute("use Electionsys")   
+mycursor.execute("create table IF NOT EXISTS admin(Cndt_Id char(20) primary key,Cndt_Name char(20),Vote_cnt int(3))")
 
+
+
+    
 candidateNo=int(input("Enter number of candidates:-"))
 for i in range(candidateNo):
     candidateID=input("Enter id of candidate:-")
