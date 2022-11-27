@@ -16,7 +16,7 @@ mycursor.execute("create table IF NOT EXISTS candidates(Cndt_Id char(20) primary
     
 candidateNo=int(input("Enter number of candidates:-"))
 for i in range(candidateNo):
-    candidateID=input("Enter id of candidate:-")
+    candidateID="CD"+f"{i}"
     PositionName=input("Enter position of candidate:-")
     candidateName=input("Enter Name of candidate:-")
 

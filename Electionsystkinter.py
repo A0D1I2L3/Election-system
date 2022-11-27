@@ -1,11 +1,36 @@
 from tkinter import *
 import mysql.connector as broker
 
-mydb = broker.connect(host='192.168.1.62',user='root',port=3306, password='tiger')
+mydb = broker.connect(host='192.168.1.3',user='chomu', password='tiger')
 mycursor=mydb.cursor()
 mycursor.execute("Use electionsys")
-mycursor.execute("Select position from candidates")
-positions=mycursor.fetchall()
+
+
+
+#candiate name , positions are fetched from sql
+mycursor.execute("Select Cndt_Name,position from candidates")
+data=mycursor.fetchall()
+print(data)
+
+#positions are added to separate list
+posn_list=[]
+grouped_list=[]
+for i in data:
+    if i[1] not in posn_list:
+        posn_list.append(i[1])
+print(posn_list)
+
+#candidate name,posn are grouped based on position
+for j in posn_list:
+    for k in data:
+        if k[1]==j:
+            grouped_list.append(k)
+print(grouped_list)
+
+
+
+
+
 
 main_window=Tk()
 main_window.geometry("300x200")
@@ -13,25 +38,6 @@ main_window.geometry("300x200")
 
 main_window.title("Election system")
 Label1=Label(main_window,text="Election 2023").pack(side=TOP)
-
-mycursor.execute("Select Cndt_Name from candidates")
-names=mycursor.fetchall()
-
-for i in positions:
-    for position in list(i):
-
-        Label2=Label(main_window,text=f"{str(position)}").pack(ipadx=10,ipady=20)
-
-        for k in names:
-            for name in list(k):
-                button=Radiobutton(main_window,text=f"{str(name)}",value="jj").pack(ipadx=8,ipady=2)
-
-
-
-
-
-
-
 
 
 
