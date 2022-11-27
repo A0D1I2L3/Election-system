@@ -38,9 +38,22 @@ main_window.title("Election system")
 Label1=Label(main_window,text="Election 2023").pack(side=TOP)
 
 
+def save():
+    print('hehe')
+    proceed.set(1)
+    
+proceed=IntVar()
+for posn in posn_list:
+    Label(text=f"{posn}").pack(ipadx=5,ipady=5)
+    for name in grouped_list:
+        print(name[1])
+        if name[1]==posn:
+            Radiobutton(text=f"{name[0]}",value=f"{name[0]}").pack(ipadx=5,ipady=10)
 
-
-
+    button=Button(text="Cast this vote",command=save)
+    button.pack(side=BOTTOM)
+    proceed.set(None)
+    button.wait_variable(proceed)
 
 
 main_window.mainloop()
