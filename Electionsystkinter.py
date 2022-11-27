@@ -43,7 +43,7 @@ def next_window(posn):
     
     Window=Toplevel(newWindow)
     Window.geometry("300x200")
-    Label(Window,text=f"{posn}").pack(ipadx=5,ipady=5)
+    Label(Window,text=f"{posn}").pack(ipadx=5,ipady=5
 
     for name in grouped_list:
         if name[1]==posn:
