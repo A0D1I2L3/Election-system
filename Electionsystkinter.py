@@ -37,23 +37,52 @@ main_window.geometry("300x200")
 main_window.title("Election system")
 Label1=Label(main_window,text="Election 2023").pack(side=TOP)
 
-
-def save():
-    print('hehe')
-    proceed.set(1)
-    
 proceed=IntVar()
-for posn in posn_list:
-    Label(text=f"{posn}").pack(ipadx=5,ipady=5)
-    for name in grouped_list:
-        print(name[1])
-        if name[1]==posn:
-            Radiobutton(text=f"{name[0]}",value=f"{name[0]}").pack(ipadx=5,ipady=10)
 
-    button=Button(text="Cast this vote",command=save)
-    button.pack(side=BOTTOM)
-    proceed.set(None)
-    button.wait_variable(proceed)
+def next_window(posn):
+    
+    Window=Toplevel(newWindow)
+    Window.geometry("300x200")
+    Label(Window,text=f"{posn}").pack(ipadx=5,ipady=5)
+
+    for name in grouped_list:
+        if name[1]==posn:
+            Radiobutton(Window,text=f"{name[0]}",value=f"{name[0]}").pack(ipadx=5,ipady=10)
+    save_button=Button(Window,text="Save vote",command=lambda:[Window.destroy(),vote()])
+    save_button.pack()
+    save_button.wait_variable(proceed)
+
+def vote():
+    global posn
+    try :
+        posn=posn_list[(posn_list.index(posn))+1]
+        next_window(posn)
+    except IndexError:
+        pass
+
+
+def start():
+    global newWindow
+    newWindow=Toplevel(main_window)
+    newWindow.geometry("300x200")
+    global posn
+
+    for posn in posn_list:
+        Label(newWindow,text=f"{posn}").pack(ipadx=5,ipady=5)
+
+        for name in grouped_list:
+            if name[1]==posn:
+                Radiobutton(newWindow,text=f"{name[0]}",value=f"{name[0]}").pack(ipadx=5,ipady=10)
+
+        save_button=Button(newWindow,text="Save vote",command=lambda:[newWindow.withdraw(),vote()])
+        save_button.pack()
+        save_button.wait_variable(proceed)
+
+
+Button(text="Start voting",command=lambda:[main_window.withdraw(),start()]).pack(anchor=CENTER)
+
+
+        
 
 
 main_window.mainloop()
