@@ -9,6 +9,7 @@ mycursor=mydb.cursor()
 
 mycursor.execute("Create database IF NOT EXISTS Electionsys")
 mycursor.execute("use Electionsys")   
+
 mycursor.execute("create table IF NOT EXISTS candidates(Cndt_Id char(20) primary key,Cndt_Name char(20),Position char(20),Vote_cnt int(3))")
 
 
