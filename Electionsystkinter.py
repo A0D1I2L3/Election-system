@@ -28,14 +28,12 @@ for j in posn_list:
 print(grouped_list)
 
 
-
-
-
-
+#tkinter starts here
+#initialising tkinter
 main_window=Tk()
 main_window.geometry("300x200")
-'''widgets are added here '''
 
+#adding widgets 
 main_window.title("Election system")
 Label1=Label(main_window,text="Election 2023").pack(side=TOP)
 
