@@ -1,1 +1,1 @@
-:trollface: Election sys for school project :trollface:
+:trollface: Election sys for school project :trollface
