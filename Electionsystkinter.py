@@ -54,8 +54,11 @@ def next_window(posn):
     save_button.wait_variable(proceed)
 
 def vote():
-    votevalue=value.get()
-    mycursor.execute("update candidates set Vote_cnt=Vote_cnt+1 where Cndt_Name= "f"{votevalue}"" ")
+    votevalue=(value.get(),)
+    print(votevalue)
+    sql='''update candidates set Vote_cnt=Vote_cnt+1 where Cndt_Name=%s'''
+    mycursor.execute(sql,votevalue)
+    
     global posn
 
     try :
@@ -63,6 +66,8 @@ def vote():
         next_window(posn)
     except IndexError:
         pass
+    
+    mydb.commit()
 
 
 
