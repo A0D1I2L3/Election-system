@@ -4,7 +4,7 @@ mydb=broker.connect(host='localhost',user='root',passwd='tiger')
 mycursor=mydb.cursor()
 
 mycursor.execute("Use electionsys")
-mycursor.execute("Select Cndt_name,position,vote_cnt from candidates group by position order by vote_cnt;")
+mycursor.execute("select Cndt_name,position,vote_cnt from candidates group by cndt_Name order by vote_cnt desc;")
 data=mycursor.fetchall()
 
 for i in data:
