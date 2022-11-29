@@ -1,7 +1,7 @@
 from tkinter import *
 import mysql.connector as broker
 
-mydb = broker.connect(host='192.168.1.3',user='chomu', password='tiger')
+mydb = broker.connect(host='192.168.1.62',user='chomu', password='tiger')
 mycursor=mydb.cursor()
 mycursor.execute("Use electionsys")
 
@@ -31,29 +31,33 @@ print(grouped_list)
 #tkinter starts here
 #initialising tkinter
 main_window=Tk()
-main_window.geometry("300x200")
+main_window.geometry("400x300")
 
 #adding widgets 
 main_window.title("Election system")
 Label1=Label(main_window,text="Election 2023").pack(side=TOP)
 
 proceed=IntVar()
+value=StringVar()
 
 def next_window(posn):
     
     Window=Toplevel(newWindow)
-    Window.geometry("300x200")
+    Window.geometry("400x300")
     Label(Window,text=f"{posn}").pack(ipadx=5,ipady=5)
 
     for name in grouped_list:
         if name[1]==posn:
-            Radiobutton(Window,text=f"{name[0]}",value=f"{name[0]}").pack(ipadx=5,ipady=10)
+            Radiobutton(Window,text=f"{name[0]}",variable = value,value=f"{name[0]}").pack(ipadx=5,ipady=10)
     save_button=Button(Window,text="Save vote",command=lambda:[Window.destroy(),vote()])
     save_button.pack()
     save_button.wait_variable(proceed)
 
 def vote():
+    votevalue=value.get()
+    mycursor.execute("update candidates set Vote_cnt=Vote_cnt+1 where Cndt_Name= "f"{votevalue}"" ")
     global posn
+
     try :
         posn=posn_list[(posn_list.index(posn))+1]
         next_window(posn)
@@ -61,10 +65,11 @@ def vote():
         pass
 
 
+
 def start():
     global newWindow
     newWindow=Toplevel(main_window)
-    newWindow.geometry("300x200")
+    newWindow.geometry("400x400")
     global posn
 
     for posn in posn_list:
@@ -72,7 +77,7 @@ def start():
 
         for name in grouped_list:
             if name[1]==posn:
-                Radiobutton(newWindow,text=f"{name[0]}",value=f"{name[0]}").pack(ipadx=5,ipady=10)
+                Radiobutton(newWindow,text=f"{name[0]}",variable = value,value=f"{name[0]}").pack(ipadx=5,ipady=10)
 
         save_button=Button(newWindow,text="Save vote",command=lambda:[newWindow.withdraw(),vote()])
         save_button.pack()
