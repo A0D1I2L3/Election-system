@@ -52,7 +52,6 @@ def next_window(posn):
 
 def vote():
     votevalue=(value.get(),)
-    print(votevalue)
     sql='''update candidates set Vote_cnt=Vote_cnt+1 where Cndt_Name=%s'''
     mycursor.execute(sql,votevalue)
     
