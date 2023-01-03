@@ -1,4 +1,8 @@
 import mysql.connector as broker
+import matplotlib.pyplot as plt
+from tkinter import *
+
+
 
 mydb=broker.connect(host='localhost',user='root',passwd='tiger')
 mycursor=mydb.cursor()
