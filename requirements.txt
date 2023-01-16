@@ -1,3 +1,32 @@
 matplotlib==3.6.2
 mysql_connector_repackaged==0.3.1
 tkinter==8.6
+
+
+# def next_window(posn):
+    
+#     Window=Toplevel(newWindow)
+#     Window.geometry("400x300")
+#     Label(Window,text=f"{posn}").pack(ipadx=5,ipady=5)
+
+#     for name in grouped_list:
+#         if name[1]==posn:
+#             Radiobutton(Window,text=f"{name[0]}",variable = value,value=f"{name[0]}").pack(ipadx=5,ipady=10)
+#     save_button=Button(Window,text="Save vote",command=lambda:[Window.destroy(),vote()])
+#     save_button.pack()
+#     save_button.wait_variable(proceed)
+
+# def vote():
+#     votevalue=(value.get(),)
+#     sql='''update candidates set Vote_cnt=Vote_cnt+1 where Cndt_Name=%s'''
+#     mycursor.execute(sql,votevalue)
+    
+#     global posn
+
+#     try :
+#         posn=posn_list[(posn_list.index(posn))+1]
+#         next_window(posn)
+#     except IndexError:
+#         pass
+    
+#     mydb.commit()
