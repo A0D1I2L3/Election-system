@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import ttk
+
 import mysql.connector as broker
 import matplotlib.pyplot as plt
 
@@ -31,20 +33,52 @@ for j in posn_list:
 #initialising tkinter
 main_window=Tk()
 main_window.geometry("400x300")
-
+main_window.configure(background='#181818')
 #adding widgets 
-main_window.title("Election system")
-Label1=Label(main_window,text="Election 2023").pack(side=TOP)
+
+fra=Frame(main_window)
+fra.pack(pady=50)
+fra.configure(bg='#181818')
+
+
+
+
+main_window.title(" Result ")
 
 proceed=IntVar()
 value=StringVar()
 d={}
 
-def bar():
+def selector():
+    fnctn=pie_button.cget('text')
+    fnctn1=bar_button.cget('text')
+
     global newWindow
     newWindow=Toplevel(main_window)
     newWindow.geometry("400x400")
+    newWindow.configure(background='#181818')
+    fra=Frame(newWindow)
+    fra.pack(pady=50)
+    fra.configure(bg='#181818')
+
     global posn
+    if fnctn=="Pie chart":
+        for posn in posn_list:
+            b=Button(newWindow,text=f"{posn}",command=pi)
+            b.pack(padx=5,pady=5)
+    if fnctn1=="Bar graph":
+        for posn in posn_list:
+            b=Button(newWindow,text=f"{posn}",command=bar)
+            b.pack(padx=5,pady=5)
+
+    
+    
+
+
+
+
+def bar():
+    
     
     names=[]
     votes=[]
@@ -53,31 +87,32 @@ def bar():
     for posn in posn_list:
         
         for name in grouped_list:
-            names.append(name[0])
-            votes.append(name[2])
+            if name[1]==posn:
+                names.append(name[0])
+                votes.append(name[2])
 
-            fig = plt.figure(figsize = (10, 5))
- 
-            # creating the bar plot
-            plt.bar(names, votes, color ='maroon')
-
-            plt.xlabel("Names of candidates")
-            plt.ylabel("No. of votes ")
-            plt.title(f"{posn}")
-            plt.show()
             
+        fig = plt.figure(figsize = (10, 5))
+        plt.bar(names, votes, color ='maroon')
+        plt.xlabel("Names of candidates")
+        plt.ylabel("No. of votes ")
+        plt.title(f"{posn}")
+        plt.show()      
 
-        
-
-        
-        
-        save_button=Button(newWindow,text="Save vote",command=lambda:[newWindow.withdraw()])
-        save_button.pack()
-        save_button.wait_variable(proceed)
+        button=Button(text="next")  
 
 
-Button(text="Bar graph",command=lambda:[main_window.withdraw(),bar()]).pack(anchor=CENTER)
-Button(text="Pie graph",command=lambda:[main_window.withdraw(),pie()]).pack(anchor=CENTER)
+
+def pie():
+    pass
+
+
+bar_button=Button(fra,text="Bar graph",command=lambda:[main_window.withdraw(),selector()],bg="white",height=2,width=10)
+bar_button.pack(pady=5)
+pie_button=Button(fra,text="Pie chart",command=lambda:[main_window.withdraw(),selector()],bg="white",height=2,width=10)
+pie_button.pack(pady=5)
+
+
 
 
 
