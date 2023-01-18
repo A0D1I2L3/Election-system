@@ -1,7 +1,7 @@
 from tkinter import *
 import mysql.connector as broker
 
-mydb = broker.connect(host='192.168.1.62',user='chomu', password='tiger')
+mydb = broker.connect(host='192.168.1.5',user='chomu', password='tiger')
 mycursor=mydb.cursor()
 mycursor.execute("Use electionsys")
 

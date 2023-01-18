@@ -5,7 +5,7 @@ import mysql.connector as broker
 import matplotlib.pyplot as plt
 
 
-mydb = broker.connect(host='192.168.1.62',user='chomu', password='tiger')
+mydb = broker.connect(host='192.168.1.5',user='chomu', password='tiger')
 mycursor=mydb.cursor()
 mycursor.execute("Use electionsys")
 
@@ -49,24 +49,29 @@ proceed=IntVar()
 value=StringVar()
 d={}
 
-def selector():
-    fnctn=pie_button.cget('text')
-    fnctn1=bar_button.cget('text')
+def on_click(text):
+   functn=text
+   
+   
+   selector(functn)
+
+def selector(functn):
 
     global newWindow
+    global b
     newWindow=Toplevel(main_window)
     newWindow.geometry("400x400")
     newWindow.configure(background='#181818')
     fra=Frame(newWindow)
     fra.pack(pady=50)
     fra.configure(bg='#181818')
-
     global posn
-    if fnctn=="Pie chart":
+
+    if functn=="pie":
         for posn in posn_list:
-            b=Button(newWindow,text=f"{posn}",command=pi)
+            b=Button(newWindow,text=f"{posn}",command=pie)
             b.pack(padx=5,pady=5)
-    if fnctn1=="Bar graph":
+    elif functn=="bar":
         for posn in posn_list:
             b=Button(newWindow,text=f"{posn}",command=bar)
             b.pack(padx=5,pady=5)
@@ -80,26 +85,27 @@ def selector():
 def bar():
     
     
+    posn=b.cget('text')
+    
+    
     names=[]
     votes=[]
 
-
-    for posn in posn_list:
+  
+    for name in grouped_list:
+        if name[1]==posn:
+            names.append(name[0])
+            votes.append(name[2])
+    
         
-        for name in grouped_list:
-            if name[1]==posn:
-                names.append(name[0])
-                votes.append(name[2])
+    fig = plt.figure(figsize = (10, 5))
+    plt.bar(names, votes, color ='maroon')
+    plt.xlabel("Names of candidates")
+    plt.ylabel("No. of votes ")
+    plt.title(posn)
+    plt.show()      
 
-            
-        fig = plt.figure(figsize = (10, 5))
-        plt.bar(names, votes, color ='maroon')
-        plt.xlabel("Names of candidates")
-        plt.ylabel("No. of votes ")
-        plt.title(f"{posn}")
-        plt.show()      
-
-        button=Button(text="next")  
+     
 
 
 
@@ -107,9 +113,9 @@ def pie():
     pass
 
 
-bar_button=Button(fra,text="Bar graph",command=lambda:[main_window.withdraw(),selector()],bg="white",height=2,width=10)
+bar_button=Button(fra,text="Bar graph",command=lambda:[main_window.withdraw(),on_click("bar")],bg="white",height=2,width=10)
 bar_button.pack(pady=5)
-pie_button=Button(fra,text="Pie chart",command=lambda:[main_window.withdraw(),selector()],bg="white",height=2,width=10)
+pie_button=Button(fra,text="Pie chart",command=lambda:[main_window.withdraw(),on_click("pie")],bg="white",height=2,width=10)
 pie_button.pack(pady=5)
 
 
