@@ -2,6 +2,8 @@ from tkinter import *
 import mysql.connector as broker
 from tkinter import messagebox
 import matplotlib.pyplot as plt
+import random
+
 
 mydb = broker.connect(host='localhost',user='root', password='tiger')
 mycursor=mydb.cursor()
@@ -100,6 +102,15 @@ def creation():
 
 def result():
 
+    def rand(l):
+        col=[]
+        for i in range(l):
+            color = "#"+''.join([random.choice('ABCDEF0123456789') for i in range(6)])
+            col.append(color)
+        return col
+
+        
+
     mycursor.execute("use Electionsys")  
     mycursor.execute("Select Cndt_Name,position,vote_cnt from candidates")
     data=mycursor.fetchall()
@@ -145,6 +156,9 @@ def result():
         
         def bar(posn):
 
+            
+                    
+
             names=[]
             votes=[]
             for name in grouped_list:
@@ -152,10 +166,14 @@ def result():
                     names.append(name[0])
                     votes.append(name[2])   
             fig = plt.figure(figsize = (10, 5))
-            plt.bar(names, votes, color ='maroon',width = 0.7)
+            plt.barh(names, votes)            
             plt.xlabel("Names of candidates")
             plt.ylabel("No. of votes ")
             plt.title(posn)
+            for index, value in enumerate(votes):
+                    plt.text(value, index,
+                            str(value))
+
             plt.show()      
         
         
@@ -184,13 +202,20 @@ def result():
             
             names=[]
             votes=[]
+            
             for name in grouped_list:
                 if name[1]==posn:
-                    names.append(name[0])
-                    votes.append(name[2]) 
-            plt.pie(votes, startangle = 90,counterclock=False, shadow=True)
+                    if name[2]!=0:
+                        names.append(name[0])
+                        votes.append(name[2]) 
+            l=len(names)
+            colV=rand(l)
+            plt.pie(votes, startangle = 90,counterclock=False, shadow=True,autopct='%.1f%%',colors=colV)
             plt.title(posn)
-            plt.legend(names)
+
+            
+
+            plt.legend(names,loc='upper left', frameon=False)
             plt.show()
 
         fra=Frame(newmain_window)

@@ -40,6 +40,8 @@ for j in posn_list:
         if k[1]==j:
             grouped_list.append(k)
 
+
+
 def next_main_window(posn):
     
     main_window=Toplevel(newmain_window)
