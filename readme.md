@@ -1,6 +1,6 @@
 <div align="center">
 
-  <h1> Election  System Using Python and tkinter</h1>
+  <h1> Election  System Using Python and tkinter :trollface:</h1>
   
 <sub>Authors: <a>Adil Haneef, Athul Krishna, Sreerag Unni N </a><br>
 <small> January, 2023</small></sub>
