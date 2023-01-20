@@ -14,7 +14,7 @@ main_window.title('ADMIN_CONTROL')
 main_window.geometry("1080x720")
 main_window.resizable(False,False)
 main_window.configure(background='#181818')
-main_window.option_add("*Font", ("Consolas Bold",14))
+main_window.option_add("*Font", ("Queental",14))
 main_window.option_add("*Background", "#181818")
 main_window.option_add("*Button.Background", "#404040")
 main_window.option_add("*Button.foreground", "White")
@@ -27,7 +27,7 @@ main_window.option_add("*Entry.foreground", "White")
 fra=Frame(main_window)
 fra.pack(pady=50)
 
-Label1=Label(fra,text="Election 2023",font=("Queental", 70)).pack()
+Label1=Label(fra,text="Election 2023",font=("The Mighty Avengers", 70)).pack()
 
 
 

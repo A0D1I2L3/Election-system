@@ -1,6 +1,6 @@
 <div align="center">
 
-  <h1> Election Voting System Using Python and tkinter</h1>
+  <h1> Election  System Using Python and tkinter</h1>
   
 <sub>Authors: <a>Adil Haneef, Athul Krishna, Sreerag Unni N </a><br>
 <small> January, 2023</small></sub>
@@ -14,25 +14,26 @@
  - Minimal app for organising Elections completely programmed using Python and frontend using Python-tkinter
  - Data entry using Python and tkinter into Database managed by Mysql
   
-##Features
+## Features
 - Fully controlled by admin 
 - Result in Pie as well as bar graphs
 - Ability to host main database in one system and vote to it through other systems
   
-##Requirements
+## Requirements
 To actually use this project for your advantage you need the following
 - Balls
 - Motivation
 - IQ >5
 - Ability to follow the instructions given
 
-##Setup
+## Basic Setup
 I believe you my friend , have all the requirements mentioned above
 
 So lets get started 
-###Install python 3 (preferably 3.10)
+
+### Install python 3 (preferably 3.10)
 Entire code runs on Python. Install [Python for windows](https://www.python.org/downloads/).
-![Python download](images/download_python.png)
+![Python download](assets/download_python.png)
 After downloading double click and install
 We can check if node is installed on our local machine by opening our device terminal or command prompt.
 ```sh
@@ -41,7 +42,7 @@ Python 3.10.7
 ```
 
 ### Download git repository
-![Download repository](images/download_repo.png)
+![Download repository](assets/download_repo.png)
 Download ZIP and extract OR
 ### Clone git repository
 Open git Bash.
@@ -68,7 +69,7 @@ Modules
 Use autorun.bat to install all required modules (Windows)
 
 Double-Click on autorun.bat in Election-system.
-![autorun install](images/running_autorun.png)
+![autorun install](assets/running_autorun.png)
 Now, Click any key to close cmd window.
 
 OR
@@ -80,8 +81,18 @@ pip install MODULE-NAME
 
 
 #### Fonts used
+![Fonts](assets/fonts.png)
 - Queental
 - Consolas Bold
-![Fonts](images/fonts.png)
+
+#### Installing fonts
+
+Open fonts folder in the repository.
+Install one by one
+![installing fonts](assets/installing_fonts.png)
 
 
+## Connectivity setup(mysql-)
+
+1.Open MySQL 8.0 Command Line Client and login with your password
+2.Create a user with create option
