@@ -1,7 +1,7 @@
 
 <div align="center">
 
-  <h1> Election System Using Python and tkinter :trollface:</h1>
+  <h1> :trollface: Election System Using Python and tkinter :trollface:</h1>
 
 </div>
 
@@ -126,7 +126,7 @@ Install one by one
     mysql> flush privileges;
     Query OK, 0 rows affected (0.02 sec)
     ```
-5. >Mysql user and passwd is 'root'and 'tiger' respectively, You might need to change in [[adminside.py (line 8)](adminside.py)](https://github.com/A0D1I2L3/Election-system/blob/master/adminside.py#L8) . You may need to change [[voterside.py (line 5)](voterside.py)](https://github.com/A0D1I2L3/Election-system/blob/master/voterside.py#L5) to
+5. >Mysql user and passwd is 'root'and 'tiger' respectively, You might need to change in [adminside.py (line 8)](https://github.com/A0D1I2L3/Election-system/blob/master/adminside.py#L8) . You may need to change [voterside.py (line 5)]([voterside.py](https://github.com/A0D1I2L3/Election-system/blob/master/voterside.py#L5)) to
    
     
     ```sh
