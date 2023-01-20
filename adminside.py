@@ -15,6 +15,7 @@ main_window.geometry("1080x720")
 main_window.resizable(False,False)
 main_window.configure(background='#181818')
 main_window.option_add("*Font", ("Queental",14))
+main_window.attributes('-fullscreen',True)
 main_window.option_add("*Background", "#181818")
 main_window.option_add("*Button.Background", "#404040")
 main_window.option_add("*Button.foreground", "White")
@@ -36,8 +37,6 @@ Button(fra,text="View result ",command=lambda:[result()]).pack(padx=5,pady=10)
 Button(fra,text=" Delete all data",command=lambda:[delete()],bg="red").pack(padx=5,pady=10)
 Button(fra,text=" Exit",command=main_window.destroy).pack(padx=5,pady=10)
 
-
-
 posn=StringVar()
 name=StringVar()
 
@@ -50,73 +49,46 @@ def creation():
     frame=Frame(newwindow)
     frame.pack(padx=10,pady=10,ipadx=10)   
 
-
-
     name_post_l = Label(master=frame , text="NAME OF THE POST").pack(pady = 10)
     Cd_posn=Entry(frame,textvariable=posn)
     Cd_posn.pack()
 
-
     name_post_name = Label(master=frame , text="NAME OF THE CANDIDATE").pack(pady = 10)
     Cd_name=Entry(frame,textvariable=name)
     Cd_name.pack()
-
-
-
-
     Button(frame,text="Add candidate",command=lambda:[add()]).pack(anchor=CENTER)
     Button(frame,text="Next position ",command=lambda:[nextpos()]).pack(anchor=CENTER)
 
     Button(frame,text="Close ",command=lambda:[newwindow_destroy()]).pack(anchor=CENTER)
 
-
-
-
-
     def add():
-        
-
         mycursor.execute("Create database IF NOT EXISTS Electionsys")
         mycursor.execute("use Electionsys")   
-
         mycursor.execute("create table IF NOT EXISTS candidates(Cndt_Name char(20) unique,Position char(20),Vote_cnt int(3) default 0)")
-         
         PositionName=posn.get()
         candidateName=name.get()
-
         if candidateName!="" or PositionName!="":
             sql='''Insert into candidates(Cndt_Name,Position) values(%s,%s)'''
         else:
-            messagebox.showerror("Error","Candidate/Position name cannot be empty ")
-            
+            messagebox.showerror("Error","Candidate/Position name cannot be empty ")   
         data=(candidateName,PositionName)
         try:
             mycursor.execute(sql,data)
         except broker.errors.IntegrityError:
             messagebox.showerror("Error",f"Candidate {candidateName} already exists" )
 
-
-
         mydb.commit()
-
         Cd_name.delete(0, END)
     def nextpos():
         Cd_posn.delete(0, END)
         Cd_name.delete(0, END)
-
-
-
 def result():
-
     def rand(l):
         col=[]
         for i in range(l):
             color = "#"+''.join([random.choice('ABCDEF0123456789') for i in range(6)])
             col.append(color)
         return col
-
-        
-
     mycursor.execute("use Electionsys")  
     mycursor.execute("Select Cndt_Name,position,vote_cnt from candidates")
     data=mycursor.fetchall()
@@ -130,28 +102,16 @@ def result():
         for k in data:
             if k[1]==j:
                 grouped_list.append(k)
-
-
-    
-    
     global newwindow
 
     newwindow=Toplevel()
     newwindow.geometry('480x480')
     frame=Frame(newwindow)
     frame.pack(padx=10,pady=10,ipadx=10)   
-
-
-
-
     newwindow.title(" Result ")
-
     proceed=IntVar()
     value=StringVar()
     d={}
-
-        
-
 
     def bar_plotter():
         global newmain_window
@@ -159,11 +119,7 @@ def result():
         newmain_window.geometry("400x400")
         newmain_window.configure(bg='#181818')
 
-        
         def bar(posn):
-
-            
-                    
 
             names=[]
             votes=[]
@@ -182,33 +138,25 @@ def result():
 
             plt.show()      
         
-        
         button_dict={}
         fra=Frame(newmain_window)
         fra.pack(pady=50)
         fra.configure(bg='#181818')
-
-
         for i in range(len(posn_list)):
             def func(x=i):
                 return bar(posn_list[x])
             
-            
             button_dict[i]=Button(newmain_window, text=posn_list[i], command=func,height=2,width=10).pack(pady=5)
             
-
     def pie_plotter():
         global newmain_window
         newmain_window=Toplevel(main_window)
         newmain_window.geometry("400x400")
         
         newmain_window.configure(bg='#181818')
-
         def pie(posn):
-            
             names=[]
             votes=[]
-            
             for name in grouped_list:
                 if name[1]==posn:
                     if name[2]!=0:
@@ -218,25 +166,17 @@ def result():
             colV=rand(l)
             plt.pie(votes, startangle = 90,counterclock=False, shadow=True,autopct='%.1f%%',colors=colV)
             plt.title(posn)
-
-            
-
             plt.legend(names,loc='upper left', frameon=False)
             plt.show()
-
         fra=Frame(newmain_window)
         fra.pack(pady=50)
         fra.configure(bg='#181818')
-
         button_dict={}
+
         for i in range(len(posn_list)):
             def func(x=i):
                 return pie(posn_list[x])
-            
-            
             button_dict[i]=Button(newmain_window, text=posn_list[i], command=func,height=2,width=10).pack(pady=5)
-
-        
 
 
     bar_button=Button(frame,text="Bar graph",command=lambda:[bar_plotter()],height=2,width=10)
@@ -255,7 +195,6 @@ def delete():
     
 def newwindow_destroy():
     newwindow.destroy()
-
 
 cred =Frame(main_window)
 cred.pack(padx=10,pady=10,side=BOTTOM)

@@ -2,7 +2,7 @@ from tkinter import *
 import mysql.connector as broker
 
 
-mydb = broker.connect(host='192.168.1.62',user='chomu', password='tiger')
+mydb = broker.connect(host='192.168.1.5',user='chomu', password='tiger')
 mycursor=mydb.cursor()
 mycursor.execute("Use electionsys")
 
@@ -92,7 +92,7 @@ def start():
 
 Label1=Label(text="Election 2023",font=("The Mighty Avengers", 70)).pack()
 
-Button(text="Start voting",command=lambda:[main_window.withdraw(),start()]).pack(pady=20)
+Button(text="Start voting",command=lambda:[start()]).pack(pady=20)
 
 
 main_window.mainloop()
