@@ -16,6 +16,7 @@
   
 ## Requirements
   To actually use this project for your advantage you need the following
+  - **Balls**
   - IQ >5
   - Ability to follow the instructions given
 
