@@ -259,7 +259,7 @@ def newwindow_destroy():
 
 cred =Frame(main_window)
 cred.pack(padx=10,pady=10,side=BOTTOM)
-credit=Label(cred,text='''Project Done By: Adil Haneef M.K, Athul Krishna, Sreerag Unni N
+credit=Label(cred,text='''Project Done By: Adil Haneef M.K, Athul Krishna K.M, Sreerag Unni N
                              \n KENDRIYA VIDYALAYA KALPETTA
                                         \nYear : 2022-2023''')
 credit.pack(side='right',anchor='e')
