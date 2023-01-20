@@ -1,8 +1,9 @@
 from tkinter import *
+import winsound
 import mysql.connector as broker
 
 
-mydb = broker.connect(host='192.168.1.62',user='chomu', password='tiger')
+mydb = broker.connect(host='192.168.1.5',user='chomu', password='tiger')
 mycursor=mydb.cursor()
 mycursor.execute("Use electionsys")
 
@@ -67,7 +68,8 @@ def vote():
         posn=posn_list[(posn_list.index(posn))+1]
         next_main_window(posn)
     except IndexError:
-        pass
+        winsound.PlaySound("assets/beep.wav", winsound.SND_FILENAME)
+
     
     mydb.commit()
 
