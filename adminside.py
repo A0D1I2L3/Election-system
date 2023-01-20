@@ -31,9 +31,12 @@ Label1=Label(fra,text="Election 2023",font=("Queental", 70)).pack()
 
 
 
-Button(fra,text="Create posts",command=lambda:[main_window.withdraw(),creation()]).pack(padx=5,pady=10)
-Button(fra,text="View result ",command=lambda:[main_window.withdraw(),result()]).pack(padx=5,pady=10)
-Button(fra,text=" Delete all data",command=lambda:[main_window.withdraw(),delete()],bg="red").pack(padx=5,pady=10)
+Button(fra,text="Create posts",command=lambda:[creation()]).pack(padx=5,pady=10)
+Button(fra,text="View result ",command=lambda:[result()]).pack(padx=5,pady=10)
+Button(fra,text=" Delete all data",command=lambda:[delete()],bg="red").pack(padx=5,pady=10)
+Button(fra,text=" Exit",command=main_window.destroy).pack(padx=5,pady=10)
+
+
 
 posn=StringVar()
 name=StringVar()
@@ -61,10 +64,10 @@ def creation():
 
 
 
-    Button(frame,text="Add candidate",command=lambda:[main_window.withdraw(),add()]).pack(anchor=CENTER)
-    Button(frame,text="Next position ",command=lambda:[main_window.withdraw(),nextpos()]).pack(anchor=CENTER)
+    Button(frame,text="Add candidate",command=lambda:[add()]).pack(anchor=CENTER)
+    Button(frame,text="Next position ",command=lambda:[nextpos()]).pack(anchor=CENTER)
 
-    Button(frame,text="Close ",command=lambda:[main_window.withdraw(),newwindow_destroy()]).pack(anchor=CENTER)
+    Button(frame,text="Close ",command=lambda:[newwindow_destroy()]).pack(anchor=CENTER)
 
 
 
@@ -81,13 +84,16 @@ def creation():
         PositionName=posn.get()
         candidateName=name.get()
 
-        sql='''Insert into candidates(Cndt_Name,Position) values(%s,%s)'''
+        if candidateName!="" or PositionName!="":
+            sql='''Insert into candidates(Cndt_Name,Position) values(%s,%s)'''
+        else:
+            messagebox.showerror("Error","Candidate/Position name cannot be empty ")
             
         data=(candidateName,PositionName)
         try:
             mycursor.execute(sql,data)
         except broker.errors.IntegrityError:
-            messagebox.showerror("Error","Unique candidate names only" )
+            messagebox.showerror("Error",f"Candidate {candidateName} already exists" )
 
 
 
@@ -239,12 +245,23 @@ def result():
     pie_button.pack(pady=5)
 
 def delete():
-    mycursor.execute("Drop database Electionsys")
-
+    answer=messagebox.askyesno(title="Confirmation",message="Are you sure you want to delete all Data (this cant be recovered)")
+    if answer==True:
+        main_window.destroy()
+        mycursor.execute("Drop database Electionsys")
+        
+    else:
+        pass
     
 def newwindow_destroy():
     newwindow.destroy()
 
 
+cred =Frame(main_window)
+cred.pack(padx=10,pady=10,side=BOTTOM)
+credit=Label(cred,text='''Project Done By: Adil Haneef M.K, Athul Krishna, Sreerag Unni N
+                             \n KENDRIYA VIDYALAYA KALPETTA
+                                        \nYear : 2022-2023''')
+credit.pack(side='right',anchor='e')
 
 main_window.mainloop()
