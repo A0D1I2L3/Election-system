@@ -16,7 +16,6 @@
   
 ## Requirements
   To actually use this project for your advantage you need the following
-  - **Balls**
   - IQ >5
   - Ability to follow the instructions given
 
@@ -136,7 +135,7 @@ You are basically done with the setup. enjoy voting (no one ever)
 
 ---
   
-<sub>Author: <a href='https://github.com/A0D1I2L3'>Adil Haneef M.K </a>  
+<sub>Author: <a href='https://github.com/A0D1I2L3'>Adil Haneef M.K </a>,Sreerag Unni N,Athul Krishna K</a>  
 <small>January, 2023</small> </sub>
 
 </div>
