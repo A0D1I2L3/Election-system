@@ -1,10 +1,13 @@
+
 <div align="center">
 
-<h1> Election System Using Python and tkinter :trollface:</h1>
----
+  <h1> Election System Using Python and tkinter</h1>
+
+</div>
+
+
 
 ## Introduction 
-
 
  - Completely programmed using Python and frontend using Python-tkinter
  - Data entry using Python and tkinter into Database managed by Mysql
@@ -134,8 +137,9 @@ Install one by one
 You are basically done with the setup. enjoy voting (no one ever)
 
 ---
-  
-<sub>Author: <a href='https://github.com/A0D1I2L3'>Adil Haneef M.K </a>,Sreerag Unni N,Athul Krishna K</a>  
+
+<div align=center>
+<sub>Author: <a href='https://github.com/A0D1I2L3'>Adil Haneef M.K </a>,Sreerag Unni N,Athul Krishna K</a><br>    
 <small>January, 2023</small> </sub>
 
 </div>
