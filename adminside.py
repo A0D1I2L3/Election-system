@@ -222,37 +222,4 @@ def newwindow_destroy():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
 main_window.mainloop()
