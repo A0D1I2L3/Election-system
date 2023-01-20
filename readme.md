@@ -1,7 +1,7 @@
 
 <div align="center">
 
-  <h1> Election System Using Python and tkinter</h1>
+  <h1> Election System Using Python and tkinter :trollface:</h1>
 
 </div>
 
