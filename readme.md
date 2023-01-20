@@ -127,3 +127,6 @@ Install one by one
     mydb = broker.connect(host='<IP of admin system>',user='root', password='<yourpassword>')
     ```
 
+<p>You are basically done with the setup.. enjoy voting(no one ever)</p>
+
+---
