@@ -94,5 +94,33 @@ Install one by one
 
 ## Connectivity setup(mysql-)
 
-1.Open MySQL 8.0 Command Line Client and login with your password
-2.Create a user with create option
+1. Open MySQL 8.0 Command Line Client and login with your password
+2. Create a user with create option
+    ```
+    mysql> Create user 'root'@'%' identified by 'password';
+    Query OK, 0 rows affected (0.11 sec)
+    ```
+    >Replace % with IP address for slected  IP
+3. Grant privelegs to user
+    ```
+    mysql> Grant select on database_name.* to 'root'@'%';
+    Query OK, 0 rows affected (0.06 sec)
+    ```
+    ```
+    mysql> Grant all privileges on database_name.* to 'root'@'%';
+    Query OK, 0 rows affected (0.01 sec)
+    ```
+    eg:-
+    ```
+    mysql> Grant select,update on *.* to 'root'@'%';
+    Query OK, 0 rows affected (0.02 sec)
+    ```
+4. ```
+    mysql> flush privileges;
+    Query OK, 0 rows affected (0.02 sec)
+    ```
+5. Mysql user and passwd is 'root'and 'tiger' respectively, You might need to change in [adminside.py (line 8)](adminside.py) 
+6. ```
+  import mysql.connector as broker
+  
+  ```
