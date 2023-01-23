@@ -104,7 +104,7 @@ Install one by one
 1. Open MySQL  Command Line Client and login with your password
 2. Create a user with create option
     ```sh
-    mysql> Create user 'root'@'%' identified by 'password';
+    mysql> Create user 'root'@'%' identified by 'desired password';
     Query OK, 0 rows affected (0.11 sec)
     ```
     >Replace % with IP address for slected  IP
